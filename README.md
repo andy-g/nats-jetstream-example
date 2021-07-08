@@ -1,12 +1,12 @@
 # NATS JetStream Example Environment
 
-A simple docker-compose environ,ment to bring up a NATS JetStream environment to play with.
+A simple docker-compose environment to bring up a NATS JetStream environment to play with.
 
 _Some golang JetStream example code copied from: https://github.com/shijuvar/go-distsys_
 
 ## Bring up Environment
 ```sh
-docker-compose up-d
+docker compose up -d
 ```
 
 This will bring up:
@@ -27,13 +27,13 @@ cd create-order
 go run main.go
 ```
 
-Run the monitor subscriber (simply subscribes to all subjects in the `ORDERS` stream)
+Run the order-review subscriber (subscribes to `ORDERS.created` and publishes `ORDERS.approved` messages)
 ```sh
 cd monitor
 go run main.go
 ```
 
-Run the order-review subscriber (subscribes to `ORDERS.created` and publishes `ORDERS.approved` messages)
+Run the monitor subscriber (simply subscribes to all subjects in the `ORDERS` stream)
 ```sh
 cd monitor
 go run main.go
@@ -54,4 +54,6 @@ nats -s nats stream ORDERS
 nats -s nats stream view ORDERS
 nats -s nats stream info ORDERS
 nats -s nats stream view ORDERS 2
+nats -s nats consumer info ORDERS monitor
+nats -s nats consumer info ORDERS order-review
 ```
