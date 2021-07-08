@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 60s # By default, scrape targets every 60 seconds.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.  
+  - job_name: "nats-server"
+    scrape_interval: 15s
+    static_configs:
+      - targets: ["nats-exporter:7777"]
