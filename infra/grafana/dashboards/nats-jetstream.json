@@ -708,7 +708,7 @@
             "fieldConfig": {
                 "defaults": {
                     "custom": {},
-                    "unit": "mps"
+                    "unit": "m/s"
                 },
                 "overrides": []
             },
@@ -775,7 +775,7 @@
             },
             "yaxes": [
                 {
-                    "format": "mps",
+                    "format": "m/s",
                     "label": null,
                     "logBase": 1,
                     "max": null,
@@ -820,7 +820,7 @@
             "fieldConfig": {
                 "defaults": {
                     "custom": {},
-                    "unit": "mps"
+                    "unit": "m/s"
                 },
                 "overrides": []
             },
@@ -903,7 +903,7 @@
             },
             "yaxes": [
                 {
-                    "format": "mps",
+                    "format": "m/s",
                     "label": null,
                     "logBase": 1,
                     "max": null,
@@ -911,7 +911,7 @@
                     "show": true
                 },
                 {
-                    "format": "mpm",
+                    "format": "m/s",
                     "label": null,
                     "logBase": 1,
                     "max": null,
