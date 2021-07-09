@@ -56,4 +56,5 @@ nats -s nats stream info ORDERS
 nats -s nats stream view ORDERS 2
 nats -s nats consumer info ORDERS monitor
 nats -s nats consumer info ORDERS order-review
+nats -s nats stream rm ORDERS
 ```

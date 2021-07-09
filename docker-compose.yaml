@@ -6,26 +6,22 @@ services:
     image: nats
     entrypoint: /nats-server
     command: "-js -m 5555"
-    networks:
-      - nats
     ports:
       - 4222:4222
       - 5555:5555
 
-  nats-exporter:  
+  nats-exporter:
     image: natsio/prometheus-nats-exporter:0.8.0
     command: "-jsz all http://nats:5555"
-    networks:
-      - nats
     ports:
       - 7777:7777
+    depends_on:
+      - nats
 
   prometheus:
     image: prom/prometheus
     volumes:
       - ./infra/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-    networks:
-      - nats
     ports:
       - 9090:9090
 
@@ -36,10 +32,5 @@ services:
     environment:
       GF_SECURITY_ADMIN_USER: admin
       GF_SECURITY_ADMIN_PASSWORD: password
-    networks:
-      - nats
     ports:
       - 3000:3000
-
-networks:
-  nats: {}
