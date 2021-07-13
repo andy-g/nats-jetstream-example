@@ -868,7 +868,7 @@
             "targets": [
                 {
                     "expr": "sum(rate(jetstream_consumer_num_pending{server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\"}[$__rate_interval])+rate(jetstream_consumer_delivered_consumer_seq{server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\"}[$__rate_interval])) by (consumer_name)",
-                    "hide": false,
+                    "hide": true,
                     "instant": false,
                     "interval": "",
                     "intervalFactor": 1,
@@ -877,10 +877,26 @@
                 },
                 {
                     "expr": "- sum(rate(jetstream_consumer_delivered_consumer_seq{server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\",consumer_name=~\"$consumer\"}[$__rate_interval])) by (consumer_name)",
-                    "hide": false,
+                    "hide": true,
                     "interval": "",
                     "legendFormat": "{{consumer_name}} -",
                     "refId": "A"
+                },
+                {
+                    "expr": "sum(delta(jetstream_consumer_num_pending{server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\"}[$__rate_interval])+delta(jetstream_consumer_delivered_consumer_seq{server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\"}[$__rate_interval])) by (consumer_name) / ($__interval_ms / 1000 * 4)",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "{{consumer_name}} +",
+                    "refId": "C"
+                },
+                {
+                    "expr": "- sum(delta(jetstream_consumer_delivered_consumer_seq{server_id=~\"$server\",stream_name=~\"$stream\",consumer_name=~\"$consumer\",consumer_name=~\"$consumer\"}[$__rate_interval])) by (consumer_name) / ($__interval_ms / 1000 * 4)",
+                    "hide": false,
+                    "interval": "",
+                    "legendFormat": "{{consumer_name}} -",
+                    "refId": "D"
                 }
             ],
             "thresholds": [],
